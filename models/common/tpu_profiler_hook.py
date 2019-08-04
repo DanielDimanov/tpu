@@ -83,7 +83,7 @@ class TPUProfilerHook(tf.train.SessionRunHook):
     self._ran_first_step = False
 
   def begin(self):
-    self._global_step_tensor = tf.train.get_or_create_global_step()  # pylint: disable=protected-access
+    self._global_step_tensor = tf.compat.v1.train.get_or_create_global_step()  # pylint: disable=protected-access
 
   def before_run(self, run_context):
     return tf.train.SessionRunArgs({"global_step": self._global_step_tensor})

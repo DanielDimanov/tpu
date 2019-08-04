@@ -40,7 +40,7 @@ def build_learning_rate(initial_lr,
   if lr_decay_type == 'exponential':
     assert steps_per_epoch is not None
     decay_steps = steps_per_epoch * decay_epochs
-    lr = tf.train.exponential_decay(
+    lr = tf.compat.v1.train.exponential_decay(
         initial_lr, global_step, decay_steps, decay_factor, staircase=True)
   elif lr_decay_type == 'cosine':
     assert total_steps is not None
@@ -251,7 +251,7 @@ class EvalCkptDriver(object):
       var_dict = get_ema_vars()
       ema_assign_op = None
 
-    tf.train.get_or_create_global_step()
+    tf.compat.v1.train.get_or_create_global_step()
     sess.run(tf.global_variables_initializer())
     saver = tf.train.Saver(var_dict, max_to_keep=1)
     saver.restore(sess, checkpoint)

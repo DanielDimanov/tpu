@@ -391,7 +391,7 @@ def _model_fn(features, labels, mode, params, variable_filter_fn=None):
     return tf.estimator.EstimatorSpec(mode=mode, predictions=predictions)
 
   # Set up training loss and learning rate.
-  global_step = tf.train.get_or_create_global_step()
+  global_step = tf.compat.v1.train.get_or_create_global_step()
   if params['learning_rate_type'] == 'step':
     learning_rate = learning_rates.step_learning_rate_with_linear_warmup(
         global_step,

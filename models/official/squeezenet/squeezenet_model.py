@@ -104,7 +104,7 @@ def model_fn(features, labels, mode, params):
                  params["train"]["num_epochs"]) // global_batch_size
   learning_rate = tf.train.polynomial_decay(
       params["train"]["learning_rate"]["init_learning_rate"],
-      global_step=tf.train.get_or_create_global_step(),
+      global_step=tf.compat.v1.train.get_or_create_global_step(),
       end_learning_rate=params["train"]["learning_rate"]["end_learning_rate"],
       decay_steps=decay_steps,
       power=1.0,

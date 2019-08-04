@@ -277,7 +277,7 @@ def model_fn(features, labels, mode, params):
 
   one_hot_labels = tf.one_hot(labels, params['num_classes'], dtype=tf.int32)
 
-  tf.losses.softmax_cross_entropy(
+  tf.compat.v1.losses._cross_entropy(
       onehot_labels=one_hot_labels,
       logits=logits,
       weights=1.0,
@@ -290,9 +290,9 @@ def model_fn(features, labels, mode, params):
   train_op = None
   if training_active:
     batches_per_epoch = params['num_train_images'] // params['train_batch_size']
-    global_step = tf.train.get_or_create_global_step()
+    global_step = tf.compat.v1.train.get_or_create_global_step()
 
-    learning_rate = tf.train.exponential_decay(
+    learning_rate = tf.compat.v1.train.exponential_decay(
         learning_rate=initial_learning_rate,
         global_step=global_step,
         decay_steps=params['learning_rate_decay_epochs'] * batches_per_epoch,

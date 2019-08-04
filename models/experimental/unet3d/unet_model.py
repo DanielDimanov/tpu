@@ -337,9 +337,9 @@ def _unet_model_fn(image, labels, mode, params):
             labels=labels_idx, logits=logits)
 
   if mode == tf.estimator.ModeKeys.TRAIN:
-    learning_rate = tf.train.exponential_decay(
+    learning_rate = tf.compat.v1.train.exponential_decay(
         float(params['init_learning_rate']),
-        tf.train.get_or_create_global_step(),
+        tf.compat.v1.train.get_or_create_global_step(),
         decay_steps=params['lr_decay_steps'],
         decay_rate=params['lr_decay_rate'])
 

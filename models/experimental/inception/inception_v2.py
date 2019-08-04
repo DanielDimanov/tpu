@@ -516,7 +516,7 @@ def inception_model_fn(features, labels, mode, params):
 
   one_hot_labels = tf.one_hot(labels, FLAGS.num_classes, dtype=tf.int32)
 
-  tf.losses.softmax_cross_entropy(
+  tf.compat.v1.losses._cross_entropy(
       onehot_labels=one_hot_labels,
       logits=logits,
       weights=1.0,
@@ -537,11 +537,11 @@ def inception_model_fn(features, labels, mode, params):
   train_op = None
   if is_training:
     batches_per_epoch = _NUM_TRAIN_IMAGES / FLAGS.train_batch_size
-    global_step = tf.train.get_or_create_global_step()
+    global_step = tf.compat.v1.train.get_or_create_global_step()
     current_epoch = tf.cast(
         (tf.cast(global_step, tf.float32) / batches_per_epoch), tf.int32)
 
-    learning_rate = tf.train.exponential_decay(
+    learning_rate = tf.compat.v1.train.exponential_decay(
         learning_rate=initial_learning_rate,
         global_step=global_step,
         decay_steps=int(FLAGS.learning_rate_decay_epochs * batches_per_epoch),

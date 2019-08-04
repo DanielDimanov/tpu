@@ -122,12 +122,12 @@ def model_fn(features, labels, mode, params):
       indices=tf.cast(labels, tf.int32), depth=num_labels)
 
   if 'AuxLogits' in end_points:
-    tf.losses.softmax_cross_entropy(end_points['AuxLogits'],
+    tf.compat.v1.losses._cross_entropy(end_points['AuxLogits'],
                                     onehot_labels,
                                     label_smoothing=0.1,
                                     weights=0.4,
                                     scope='aux_loss')
-  tf.losses.softmax_cross_entropy(logits,
+  tf.compat.v1.losses._cross_entropy(logits,
                                   onehot_labels,
                                   label_smoothing=0.1,
                                   weights=1.0)
@@ -148,7 +148,7 @@ def model_fn(features, labels, mode, params):
     optimizer = tf.contrib.tpu.CrossShardOptimizer(optimizer)
 
   train_op = optimizer.minimize(
-      loss, global_step=tf.train.get_or_create_global_step())
+      loss, global_step=tf.compat.v1.train.get_or_create_global_step())
 
   return tf.contrib.tpu.TPUEstimatorSpec(mode=mode, loss=loss, train_op=train_op)
 

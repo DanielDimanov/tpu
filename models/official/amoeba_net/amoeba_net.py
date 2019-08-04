@@ -148,7 +148,7 @@ flags.DEFINE_integer(
 flags.DEFINE_float(
     'weight_decay', 4e-05, 'Weight decay for slim model.')
 flags.DEFINE_integer(
-    'num_label_classes', 1001, 'The number of classes that images fit into.')
+    'num_label_classes', 4, 'The number of classes that images fit into.')
 
 # Training hyper-parameters
 flags.DEFINE_float(

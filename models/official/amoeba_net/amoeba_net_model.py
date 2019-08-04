@@ -50,10 +50,10 @@ def imagenet_hparams():
       # Input pipeline params. #################################################
       ##########################################################################
 
-      image_size=299,
-      num_train_images=1281167,
-      num_eval_images=50000,
-      num_label_classes=1001,
+      image_size=512,
+      num_train_images=2120,
+      num_eval_images=80,
+      num_label_classes=4,
       ##########################################################################
       # Architectural params. ##################################################
       ##########################################################################
@@ -68,8 +68,8 @@ def imagenet_hparams():
       num_reduction_layers=2,
 
       # Stem.
-      stem_type='imagenet',  # 'imagenet' or others
-      num_stem_cells=2,  # 2 if stem_type == 'imagenet' else 0
+      stem_type='custom',  # 'imagenet' or others
+      num_stem_cells=0,  # 2 if stem_type == 'imagenet' else 0
 
       # Implementation details.
       data_format='NCHW',  # 'NHWC' or 'NCHW'.
@@ -363,7 +363,7 @@ class AmoebaNetEstimatorModel(object):
     train_op = None
 
     if is_training:
-      global_step = tf.train.get_or_create_global_step()
+      global_step = tf.compat.v1.train.get_or_create_global_step()
       gs_t = tf.reshape(tf.cast(global_step, tf.int32), [1])
 
       # Setup learning rate schedule
@@ -452,7 +452,7 @@ class InputPipeline(object):
     self.is_training = is_training
     self.data_dir = data_dir
     self.hparams = hparams
-    self.num_classes = 1001
+    self.num_classes = 4
     self.eval_from_hub = eval_from_hub
 
   def _dataset_parser(self, serialized_proto):

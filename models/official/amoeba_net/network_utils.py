@@ -519,7 +519,7 @@ class BaseCell(object):
       net: the Tensor that gets drop_path regularization applied.
       current_step: a float32 Tensor with the current global_step value,
         to be divided by hparams.drop_path_burn_in_steps. Usually None, which
-        defaults to tf.train.get_or_create_global_step() properly casted.
+        defaults to tf.compat.v1.train.get_or_create_global_step() properly casted.
       drop_connect_version: one of 'v1', 'v2', 'v3', controlling whether
         the dropout rate is scaled by current_step (v1, the default),
         layer (v2), or both (v3).
@@ -542,7 +542,7 @@ class BaseCell(object):
           # Decrease the keep probability over time
           current_step = (
               current_step or
-              tf.cast(tf.train.get_or_create_global_step(), tf.float32))
+              tf.cast(tf.compat.v1.train.get_or_create_global_step(), tf.float32))
           current_ratio = current_step / self._drop_path_burn_in_steps
           current_ratio = tf.minimum(1.0, current_ratio)
           drop_path_keep_prob = (1 - current_ratio * (1 - drop_path_keep_prob))

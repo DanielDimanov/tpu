@@ -147,7 +147,7 @@ def _get_learning_rate(params, global_step, num_batches_per_epoch):
         end_learning_rate=0,
         power=params['learning_power'])
   elif learning_policy == 'step':
-    learning_rate = tf.train.exponential_decay(
+    learning_rate = tf.compat.v1.train.exponential_decay(
         params['learning_rate'],
         global_step,
         decay_rate=params['learning_rate_decay'],

@@ -86,7 +86,7 @@ def build_softmax_loss(logits,
                        label_smoothing=0.1,
                        add_summary=True):
   loss_fn = functools.partial(
-      tf.losses.softmax_cross_entropy, label_smoothing=label_smoothing)
+      tf.compat.v1.losses._cross_entropy, label_smoothing=label_smoothing)
   return _build_loss(
       loss_fn=loss_fn,
       loss_name='softmax_loss',
@@ -98,10 +98,10 @@ def build_softmax_loss(logits,
 
 def compute_flops_per_example(batch_size):
   # TODO(ereal): remove this function and other unnecessary reporting.
-  options = tf.profiler.ProfileOptionBuilder.float_operation()
+  options = tf.compat.v1.profiler.ProfileOptionBuilder.float_operation()
   options['output'] = 'none'
   flops = (
-      tf.profiler.profile(
+      tf.compat.v1.profiler.profile(
           tf.get_default_graph(),
           options=options
           ).total_float_ops / batch_size)
@@ -121,7 +121,7 @@ def build_learning_rate(initial_lr,
   if lr_decay_type == 'exponential':
     assert decay_steps is not None
     assert decay_factor is not None
-    lr = tf.train.exponential_decay(
+    lr = tf.compat.v1.train.exponential_decay(
         initial_lr, global_step, decay_steps, decay_factor, staircase=True)
   elif lr_decay_type == 'cosine':
     assert total_steps is not None

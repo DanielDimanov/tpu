@@ -64,7 +64,7 @@ def poly_rate_schedule(current_epoch,
              params['num_train_images'] //
              params['train_batch_size'])
   min_step = tf.constant(1, dtype=tf.int64)
-  global_step = tf.train.get_or_create_global_step()
+  global_step = tf.compat.v1.train.get_or_create_global_step()
   decay_steps = tf.maximum(min_step, tf.subtract(global_step, w_steps))
   poly_rate = tf.train.polynomial_decay(
       plr,

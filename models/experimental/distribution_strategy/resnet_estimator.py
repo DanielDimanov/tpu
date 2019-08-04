@@ -149,7 +149,7 @@ def model_fn(features, labels, mode):
 
   assert mode == tf.estimator.ModeKeys.TRAIN
 
-  global_step = tf.train.get_or_create_global_step()
+  global_step = tf.compat.v1.train.get_or_create_global_step()
   batches_per_epoch = (_NUM_TRAIN_IMAGES /
                        (FLAGS.train_batch_size * FLAGS.num_cores))
   current_epoch = (tf.cast(global_step, tf.float32) / batches_per_epoch)

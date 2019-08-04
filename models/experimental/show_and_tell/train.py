@@ -85,7 +85,7 @@ def model_fn(features, labels, mode, params):
   if FLAGS.use_tpu:
     optimizer = tf.contrib.tpu.CrossShardOptimizer(optimizer)
   train_op = optimizer.minimize(
-      model.total_loss, global_step=tf.train.get_or_create_global_step())
+      model.total_loss, global_step=tf.compat.v1.train.get_or_create_global_step())
 
   def scaffold_fn():
     """Load pretrained Inception checkpoint at initialization time."""

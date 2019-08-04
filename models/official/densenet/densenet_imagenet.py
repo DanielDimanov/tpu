@@ -266,7 +266,7 @@ def model_fn(features, labels, mode, params):
         features, is_training=(mode == tf.estimator.ModeKeys.TRAIN))
 
   # Calculate loss, which includes softmax cross entropy and L2 regularization.
-  cross_entropy = tf.losses.softmax_cross_entropy(
+  cross_entropy = tf.compat.v1.losses._cross_entropy(
       logits=logits, onehot_labels=labels)
 
   # Add weight decay to the loss. We exclude weight decay on the batch

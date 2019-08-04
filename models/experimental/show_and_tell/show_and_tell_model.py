@@ -206,7 +206,7 @@ class ShowAndTellModel(object):
     Outputs:
       self.image_embeddings
     """
-    images = self.distort_images(images, tf.train.get_or_create_global_step())
+    images = self.distort_images(images, tf.compat.v1.train.get_or_create_global_step())
     inception_output = image_embedding.inception_v3(
         images,
         trainable=self.train_inception,
@@ -359,7 +359,7 @@ class ShowAndTellModel(object):
 
   def setup_global_step(self):
     """Sets up the global step Tensor."""
-    self.global_step = tf.train.get_or_create_global_step()
+    self.global_step = tf.compat.v1.train.get_or_create_global_step()
 
   def build_model_for_tpu(self, images, input_seqs, target_seqs, input_mask):
     self.image_embeddings = self.build_image_embeddings(images)
