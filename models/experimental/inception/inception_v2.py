@@ -516,7 +516,7 @@ def inception_model_fn(features, labels, mode, params):
 
   one_hot_labels = tf.one_hot(labels, FLAGS.num_classes, dtype=tf.int32)
 
-  tf.compat.v1.losses.softmax_cross_entropy_entropy(
+  tf.compat.v1.losses.softmax_cross_entropy(
       onehot_labels=one_hot_labels,
       logits=logits,
       weights=1.0,

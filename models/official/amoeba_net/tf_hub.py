@@ -253,7 +253,7 @@ def _make_model_fn(hub_module_spec):
     hub_module = hub.Module(spec=hub_module_spec, trainable=False)
     logits = hub_module(features)
     labels_onehot = tf.one_hot(labels, logits.shape[1])
-    loss = tf.compat.v1.losses.softmax_cross_entropy_entropy(labels_onehot, logits)
+    loss = tf.compat.v1.losses.softmax_cross_entropy(labels_onehot, logits)
 
     eval_metric_ops = None
 

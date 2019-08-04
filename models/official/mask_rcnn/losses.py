@@ -105,7 +105,7 @@ def _fast_rcnn_class_loss(class_outputs, class_targets_one_hot, normalizer=1.0):
   with tf.name_scope('fast_rcnn_class_loss'):
     # The loss is normalized by the sum of non-zero weights before additional
     # normalizer provided by the function caller.
-    class_loss = tf.compat.v1.losses.softmax_cross_entropy_entropy(
+    class_loss = tf.compat.v1.losses.softmax_cross_entropy(
         class_targets_one_hot, class_outputs,
         reduction=tf.losses.Reduction.SUM_BY_NONZERO_WEIGHTS)
     class_loss /= normalizer

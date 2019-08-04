@@ -547,14 +547,14 @@ def inception_model_fn(features, labels, mode, params):
   one_hot_labels = tf.one_hot(labels, FLAGS.num_classes, dtype=tf.int32)
 
   if 'AuxLogits' in end_points:
-    tf.compat.v1.losses.softmax_cross_entropy_entropy(
+    tf.compat.v1.losses.softmax_cross_entropy(
         onehot_labels=one_hot_labels,
         logits=tf.cast(end_points['AuxLogits'], tf.float32),
         weights=0.4,
         label_smoothing=0.1,
         scope='aux_loss')
 
-  tf.compat.v1.losses.softmax_cross_entropy_entropy(
+  tf.compat.v1.losses.softmax_cross_entropy(
       onehot_labels=one_hot_labels,
       logits=logits,
       weights=1.0,

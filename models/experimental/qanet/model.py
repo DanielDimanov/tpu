@@ -116,9 +116,9 @@ def get_loss(answer_start,
   length = logits_start.shape.as_list()[1] or tf.shape(logits_start)[1]
   start = tf.one_hot(answer_start, length)
   end = tf.one_hot(answer_end, length)
-  loss_start = tf.compat.v1.losses.softmax_cross_entropy_entropy(
+  loss_start = tf.compat.v1.losses.softmax_cross_entropy(
       onehot_labels=start, logits=logits_start, label_smoothing=label_smoothing)
-  loss_end = tf.compat.v1.losses.softmax_cross_entropy_entropy(
+  loss_end = tf.compat.v1.losses.softmax_cross_entropy(
       onehot_labels=end, logits=logits_end, label_smoothing=label_smoothing)
 
   return tf.reduce_mean(loss_start) + tf.reduce_mean(loss_end)
