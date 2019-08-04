@@ -350,7 +350,7 @@ def model_fn(features, labels, mode, params):
 
   # Calculate loss, which includes softmax cross entropy and L2 regularization.
   one_hot_labels = tf.one_hot(labels, FLAGS.num_label_classes)
-  cross_entropy = tf.compat.v1.losses._cross_entropy(
+  cross_entropy = tf.compat.v1.losses.softmax_cross_entropy_entropy(
       logits=logits,
       onehot_labels=one_hot_labels,
       label_smoothing=FLAGS.label_smoothing)

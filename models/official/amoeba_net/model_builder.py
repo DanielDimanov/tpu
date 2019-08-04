@@ -86,7 +86,7 @@ def build_softmax_loss(logits,
                        label_smoothing=0.1,
                        add_summary=True):
   loss_fn = functools.partial(
-      tf.compat.v1.losses._cross_entropy, label_smoothing=label_smoothing)
+      tf.compat.v1.losses.softmax_cross_entropy_entropy, label_smoothing=label_smoothing)
   return _build_loss(
       loss_fn=loss_fn,
       loss_name='softmax_loss',

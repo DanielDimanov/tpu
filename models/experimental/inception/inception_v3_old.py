@@ -122,12 +122,12 @@ def model_fn(features, labels, mode, params):
       indices=tf.cast(labels, tf.int32), depth=num_labels)
 
   if 'AuxLogits' in end_points:
-    tf.compat.v1.losses._cross_entropy(end_points['AuxLogits'],
+    tf.compat.v1.losses.softmax_cross_entropy_entropy(end_points['AuxLogits'],
                                     onehot_labels,
                                     label_smoothing=0.1,
                                     weights=0.4,
                                     scope='aux_loss')
-  tf.compat.v1.losses._cross_entropy(logits,
+  tf.compat.v1.losses.softmax_cross_entropy_entropy(logits,
                                   onehot_labels,
                                   label_smoothing=0.1,
                                   weights=1.0)
