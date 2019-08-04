@@ -60,7 +60,7 @@ class OptimizerFactory(object):
       self._optimizer = tf.train.AdagradOptimizer
     elif params.type == 'rmsprop':
       self._optimizer = functools.partial(
-          tf.train.RMSPropOptimizer, momentum=params.momentum)
+          tf.tf.compat.v1.train.RMSPropOptimizer, momentum=params.momentum)
     else:
       raise ValueError('Unsupported optimizer type %s.' % self._optimizer)
 

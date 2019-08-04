@@ -313,7 +313,7 @@ def model_fn(features, labels, mode, params):
           learning_rate=learning_rate, momentum=0.9)
     elif params['optimizer'] == 'RMS':
       tf.logging.info('Using RMS optimizer')
-      optimizer = tf.train.RMSPropOptimizer(
+      optimizer = tf.tf.compat.v1.train.RMSPropOptimizer(
           learning_rate,
           RMSPROP_DECAY,
           momentum=RMSPROP_MOMENTUM,

@@ -126,7 +126,7 @@ def _get_optimizer(params, learning_rate):
   elif params['optimizer'] == 'sgd':
     optimizer = tf.train.GradientDescentOptimizer(learning_rate=learning_rate)
   elif params['optimizer'] == 'rmsprop':
-    optimizer = tf.train.RMSPropOptimizer(
+    optimizer = tf.tf.compat.v1.train.RMSPropOptimizer(
         learning_rate=learning_rate,
         epsilon=params['rmsprop_epsilon'],
         momentum=params['rmsprop_momentum'])

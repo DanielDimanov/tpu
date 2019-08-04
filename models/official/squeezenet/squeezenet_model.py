@@ -119,7 +119,7 @@ def model_fn(features, labels, mode, params):
   if params["train"]["optimizer"]["type"] == "adam":
     optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate)
   elif params["train"]["optimizer"]["type"] == "rmsprop":
-    optimizer = tf.train.RMSPropOptimizer(
+    optimizer = tf.tf.compat.v1.train.RMSPropOptimizer(
         learning_rate=learning_rate,
         momentum=params["train"]["optimizer"]["momentum"],
         epsilon=1.0

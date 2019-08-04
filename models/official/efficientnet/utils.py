@@ -77,7 +77,7 @@ def build_optimizer(learning_rate,
         learning_rate=learning_rate, momentum=momentum)
   elif optimizer_name == 'rmsprop':
     tf.logging.info('Using RMSProp optimizer')
-    optimizer = tf.train.RMSPropOptimizer(learning_rate, decay, momentum,
+    optimizer = tf.tf.compat.v1.train.RMSPropOptimizer(learning_rate, decay, momentum,
                                           epsilon)
   else:
     tf.logging.fatal('Unknown optimizer:', optimizer_name)

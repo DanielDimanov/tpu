@@ -91,7 +91,7 @@ def lstm_model(seq_len=100, batch_size=None, stateful=True):
       inputs=[source], outputs=[predicted_char],
   )
   model.compile(
-      optimizer=tf.train.RMSPropOptimizer(learning_rate=0.01),
+      optimizer=tf.tf.compat.v1.train.RMSPropOptimizer(learning_rate=0.01),
       loss='sparse_categorical_crossentropy',
       metrics=['sparse_categorical_accuracy'])
   return model

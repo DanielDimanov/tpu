@@ -42,7 +42,7 @@ def create_optimizer(learning_rate, params):
   elif params['optimizer'] == 'adagrad':
     optimizer = tf.train.AdagradOptimizer(learning_rate)
   elif params['optimizer'] == 'rmsprop':
-    optimizer = tf.train.RMSPropOptimizer(
+    optimizer = tf.tf.compat.v1.train.RMSPropOptimizer(
         learning_rate, momentum=params['momentum'])
   elif params['optimizer'] == 'sgd':
     optimizer = tf.train.GradientDescentOptimizer(learning_rate=learning_rate)
