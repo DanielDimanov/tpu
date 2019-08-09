@@ -307,7 +307,7 @@ class AmoebaNetEstimatorModel(object):
           momentum=self.hparams.momentum_rate)
     elif self.hparams.optimizer == 'rmsprop':
       tf.logging.info('Using RMSProp optimizer')
-      optimizer = tf.tf.compat.v1.train.RMSPropOptimizer(
+      optimizer = tf.compat.v1.train.RMSPropOptimizer(
           learning_rate,
           RMSPROP_DECAY,
           momentum=RMSPROP_MOMENTUM,

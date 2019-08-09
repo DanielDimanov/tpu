@@ -581,7 +581,7 @@ def inception_model_fn(features, labels, mode, params):
           learning_rate=learning_rate, momentum=0.9)
     elif FLAGS.optimizer == 'RMS':
       tf.logging.info('Using RMS optimizer')
-      optimizer = tf.tf.compat.v1.train.RMSPropOptimizer(
+      optimizer = tf.compat.v1.train.RMSPropOptimizer(
           learning_rate,
           RMSPROP_DECAY,
           momentum=RMSPROP_MOMENTUM,
