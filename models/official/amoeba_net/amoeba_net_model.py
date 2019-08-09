@@ -111,7 +111,7 @@ def imagenet_hparams():
       shuffle_buffer=2000,
 
       # Any value <= 0 means it is unused
-      gradient_clipping_by_global_norm=0,
+      gradient_clipping_by_global_norm=0.0,
 
       # Learning rate schedule.
       lr=0.015,
