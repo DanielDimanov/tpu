@@ -149,7 +149,7 @@ def imagenet_hparams():
       ##########################################################################
       num_shards=8,
       distributed_group_size=1,
-      use_tpu=True)
+      use_tpu=False)
 
 
 def build_hparams(cell_name='amoeba_net_d'):
