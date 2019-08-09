@@ -62,7 +62,7 @@ def imagenet_hparams():
       # cells are not included.
       num_cells=18,
       reduction_size=256,
-      stem_reduction_size=32,
+      stem_reduction_size=4096,
 
       # How many reduction cells to use between the stacks of regular cells.
       num_reduction_layers=2,
