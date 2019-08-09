@@ -98,7 +98,7 @@ def imagenet_hparams():
       #      so the top cell has the highest dropout and the lowest cell has the
       #      lowest dropout,
       # -v3: Do both v1 and v2.
-      drop_connect_version='v3',
+      drop_connect_version='v1',
       drop_path_burn_in_steps=0,
       # `drop_connect_condition` determines under what conditions drop_connect
       # is used:
@@ -108,10 +108,10 @@ def imagenet_hparams():
       dense_dropout_keep_prob=0.5,
       batch_norm_epsilon=0.001,
       batch_norm_decay=0.9997,
-      shuffle_buffer=20000,
+      shuffle_buffer=2000,
 
       # Any value <= 0 means it is unused
-      gradient_clipping_by_global_norm=10.0,
+      gradient_clipping_by_global_norm=0,
 
       # Learning rate schedule.
       lr=0.015,
@@ -135,10 +135,10 @@ def imagenet_hparams():
 
       # This number should be a multiple of the number of TPU shards
       # used for eval (e.g., 2 for a 1x1 or 8 for a 2x2).
-      eval_batch_size=40,
+      eval_batch_size=8,
 
       # How many different crops are fed into one model. Also affects training.
-      num_input_images=2200,
+      num_input_images=1,
 
       moving_average_decay=0.9999,
 
