@@ -50,7 +50,7 @@ def imagenet_hparams():
       # Input pipeline params. #################################################
       ##########################################################################
 
-      image_size=512,
+      image_size=299,
       num_train_images=2120,
       num_eval_images=80,
       num_label_classes=4,
@@ -72,7 +72,7 @@ def imagenet_hparams():
       num_stem_cells=0,  # 2 if stem_type == 'imagenet' else 0
 
       # Implementation details.
-      data_format='NCHW',  # 'NHWC' or 'NCHW'.
+      data_format='NHWC',  # 'NHWC' or 'NCHW'.
 
       ##########################################################################
       # Training params. #######################################################
@@ -98,7 +98,7 @@ def imagenet_hparams():
       #      so the top cell has the highest dropout and the lowest cell has the
       #      lowest dropout,
       # -v3: Do both v1 and v2.
-      drop_connect_version='v1',
+      drop_connect_version='v3',
       drop_path_burn_in_steps=0,
       # `drop_connect_condition` determines under what conditions drop_connect
       # is used:
@@ -122,7 +122,7 @@ def imagenet_hparams():
       weight_decay=4e-05,
 
       # Optimizer.
-      optimizer='rmsprop',  # 'sgd', 'mom', 'adam' or 'rmsprop'
+      optimizer='sgd',  # 'sgd', 'mom', 'adam' or 'rmsprop'
       rmsprop_decay=0.9,
       rmsprop_momentum_rate=0.9,
       rmsprop_epsilon=1.0,
@@ -138,7 +138,7 @@ def imagenet_hparams():
       eval_batch_size=40,
 
       # How many different crops are fed into one model. Also affects training.
-      num_input_images=1,
+      num_input_images=2200,
 
       moving_average_decay=0.9999,
 
@@ -147,9 +147,9 @@ def imagenet_hparams():
       ##########################################################################
       # Other params. ##########################################################
       ##########################################################################
-      num_shards=None,
+      num_shards=8,
       distributed_group_size=1,
-      use_tpu=False)
+      use_tpu=True)
 
 
 def build_hparams(cell_name='amoeba_net_d'):
